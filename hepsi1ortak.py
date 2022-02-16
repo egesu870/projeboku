@@ -76,6 +76,9 @@ class hepsi1:
 				return costloc
 			
 			pickme = PriorityQueue() #silinebilir
+			#adjust loc to center point later
+			#egemennnn aklın bı sey geldi xd
+			#0ın altına düşmemeliyiz !!
 			
 			firstneighbor = closestSq(whereami,centerpoints)
 			for a,b in enumerate(firstneighbor):
