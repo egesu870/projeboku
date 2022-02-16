@@ -1,8 +1,6 @@
 import numpy as np
-import time
 import random
 from queue import PriorityQueue
-from skimage import io
 class hepsi1:
 	'''
 	This is the random player used in the colab example.
@@ -85,10 +83,10 @@ class hepsi1:
 			firstneighbor = closestSq(whereami,centerpoints)
 			for a,b in enumerate(firstneighbor):
 				sum=0
-				if b[0] != 0 :
+				if game_point >= 50:
 					sum=0
 					neighAr2=findNeighbor(b[1],100)
-					sum= sum + 4*pointdic[b[1]]/b[0]*100
+					sum= sum + 4*pointdic[b[1]]
 					for k,t in enumerate(neighAr2):
 						if t in pointdic:
 							sum=sum+ 2*pointdic[t]
@@ -97,15 +95,23 @@ class hepsi1:
 								if m in pointdic:
 									sum=sum+ 1.5*pointdic[m]
 					#if game_point-pointdic[b[1]] >= 0:
-					pickme.put((-sum,b[1]))
+					pickme.put((-sum/b[0],b[1]))
 					#if game_point-pointdic[b[1]] <= 0 and pointdic[b[1]] !=0:
-					#	pickme.put((sum/b[0],b[1]))
-
-			goal = pickme.get()[1] #highest point is chosen
+					  #pickme.put((sum/b[0],b[1]))
+				else:
+					if game_point - pointdic[b[1]] >= 0:
+						if pointdic[b[1]] == 0:
+							pickme.put(((random.randint(100,110)),b[1]))
+						else:
+							pickme.put(((game_point - pointdic[b[1]]),b[1]))
+			goal= pickme.get()[1]
+			#if game_point-pointdic[goal] >= 0:
 			return goal
+				
+				
 
 		goal = list(bestOption(loc,img))
-		print(goal)
+		
 
 		if [goal[0],loc[1]]==[goal[0],goal[1]]:
 			return [[goal[0],goal[1]]]
