@@ -83,13 +83,12 @@ class hepsi1:
 			#0ın altına düşmemeliyiz !!
 			
 			firstneighbor = closestSq(whereami,centerpoints)
-			print(firstneighbor)
 			for a,b in enumerate(firstneighbor):
 				sum=0
 				if b[0] != 0 :
 					sum=0
 					neighAr2=findNeighbor(b[1],100)
-					sum= sum + 4*pointdic[b[1]]
+					sum= sum + 4*pointdic[b[1]]/b[0]*100
 					for k,t in enumerate(neighAr2):
 						if t in pointdic:
 							sum=sum+ 2*pointdic[t]
@@ -98,15 +97,11 @@ class hepsi1:
 								if m in pointdic:
 									sum=sum+ 1.5*pointdic[m]
 					#if game_point-pointdic[b[1]] >= 0:
-					pickme.put((-sum/b[0],b[1]))
+					pickme.put((-sum,b[1]))
 					#if game_point-pointdic[b[1]] <= 0 and pointdic[b[1]] !=0:
 					#	pickme.put((sum/b[0],b[1]))
-					print(sum)
-					print(b[1])
-					print("okii")
-				print(pickme.queue)
-				print('queueue aldik')
-				goal = pickme.get()[1]
+
+			goal = pickme.get()[1] #highest point is chosen
 			return goal
 
 		goal = list(bestOption(loc,img))
