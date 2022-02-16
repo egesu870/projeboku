@@ -104,7 +104,8 @@ class hepsi1:
 					print(sum)
 					print(b[1])
 					print("okii")
-				print(pickme.queue)	
+				print(pickme.queue)
+				print('queueue aldik')
 				goal = pickme.get()[1]
 			return goal
 
