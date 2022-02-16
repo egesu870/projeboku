@@ -86,26 +86,22 @@ class hepsi1:
 				sum=0
 				if game_point >= 50:
 					sum=0
-          sum2=0
+					sum2=0
 					neighAr2=findNeighbor(b[1],100)
 					sum= sum + 4*pointdic[b[1]]
-          sum2= sum2 + 4*pointdic[b[1]]
+					sum2= sum2 + 4*pointdic[b[1]]
 					for k,t in enumerate(neighAr2):
 					  if t in pointdic:
 							sum=sum+ 2*pointdic[t]
-              sum2=sum2+2*pointdic[t]
-              pickme2.put(-sum,b[1],list(t))
-              neighAr3=findNeighbor(t,100)
-              
-              for l,m in enumerate(neighAr3):
+							sum2=sum2+2*pointdic[t]
+							pickme2.put(-sum,b[1],list(t))
+							neighAr3=findNeighbor(t,100)
+							for l,m in enumerate(neighAr3):
 								if m in pointdic:
 									sum=sum+ 1.5*pointdic[m]
-                  sum2=sum2-1.5*pointdic[m]
-                  pickme.put((-sum/b[0],b[1],list(t))
-                  
-              sum2=sum2-2*pointdic[t]
-              
-          
+									sum2=sum2-1.5*pointdic[m]
+									pickme.put((-sum/b[0],b[1],list(t))
+							sum2=sum2-2*pointdic[t]          
 				else:
 					if game_point - pointdic[b[1]] >= 0:
 						if pointdic[b[1]] == 0:
