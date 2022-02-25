@@ -79,38 +79,36 @@ class hepsi1:
 			#adjust loc to center point later
 			#egemennnn aklın bı sey geldi xd
 			#0ın altına düşmemeliyiz !!
-			pickme2 = PriorityQueue() 
-      
+			
 			firstneighbor = closestSq(whereami,centerpoints)
+			flag=0
 			for a,b in enumerate(firstneighbor):
 				sum=0
-				if game_point >= 50:
+				if game_point >= 100:
+					flag=1
 					sum=0
-					sum2=0
 					neighAr2=findNeighbor(b[1],100)
 					sum= sum + 4*pointdic[b[1]]
-					sum2= sum2 + 4*pointdic[b[1]]
 					for k,t in enumerate(neighAr2):
-					  if t in pointdic:
+						if t in pointdic:
 							sum=sum+ 2*pointdic[t]
-							sum2=sum2+2*pointdic[t]
-							pickme2.put(-sum,b[1],list(t))
 							neighAr3=findNeighbor(t,100)
 							for l,m in enumerate(neighAr3):
 								if m in pointdic:
 									sum=sum+ 1.5*pointdic[m]
-									sum2=sum2-1.5*pointdic[m]
-									pickme.put((-sum/b[0],b[1],list(t))
-							sum2=sum2-2*pointdic[t]          
+					pickme.put((-sum/b[0],b[1]))
 				else:
 					if game_point - pointdic[b[1]] >= 0:
+						flag=1
 						if pointdic[b[1]] == 0:
 							pickme.put(((random.randint(100,110)),b[1]))
 						else:
 							pickme.put(((game_point - pointdic[b[1]]),b[1]))
-			goal=[pickme.queue()[1][0])+(pickme.queue()[2][0]-pickme.queue()[1][0])*20/50,pickme.queue()[1][1]+(pickme.queue()[2][1]-pickme.queue()[1][1])*20/50]
-
-			#if game_point-pointdic[goal] >= 0:
+			if flag == 0:
+				locList=[[loc[0]+50,loc[1]+50],[loc[0]-50,loc[1]+50],[loc[0]+50,loc[1]-50],[loc[0]-50,loc[1]-50]]
+				goal= random.choice(locList)
+			else:
+				goal= pickme.get()[1]
 			return goal
 				
 				
